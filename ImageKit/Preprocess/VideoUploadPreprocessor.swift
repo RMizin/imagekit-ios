@@ -43,8 +43,8 @@ public final class VideoUploadPreprocessor : UploadPreprocessor<Data> {
         let videoTrack = asset.tracks(withMediaType: .video).first!
         let audioTrack = asset.tracks(withMediaType: .audio).first
         let dimensions = videoTrack.naturalSize.applying(videoTrack.preferredTransform)
-        let size = CGSize(width: fabs(dimensions.width), height: fabs(dimensions.height))
-        print("dimensions: width: \(fabs(dimensions.width)), height: \(fabs(dimensions.height))")
+        let size = CGSize(width: abs(dimensions.width), height: abs(dimensions.height))
+        print("dimensions: width: \(abs(dimensions.width)), height: \(abs(dimensions.height))")
         print("fps: \(videoTrack.minFrameDuration.seconds)")
         
         var audioWriteFinished = false
@@ -96,7 +96,7 @@ public final class VideoUploadPreprocessor : UploadPreprocessor<Data> {
         }
         writer.startWriting()
         reader.startReading()
-        writer.startSession(atSourceTime: kCMTimeZero)
+        writer.startSession(atSourceTime: .zero)
         
         videoWriterInput.requestMediaDataWhenReady(on: videoDispatchQueue, using: {
             while videoWriterInput.isReadyForMoreMediaData {

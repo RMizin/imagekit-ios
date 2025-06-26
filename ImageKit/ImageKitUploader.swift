@@ -5,8 +5,9 @@
 //  Created by Abhinav Dhiman on 27/07/20.
 //
 
-import Foundation
+import UIKit
 import Network
+
 
 public class ImageKitUploader {
     
@@ -131,7 +132,7 @@ public class ImageKitUploader {
         completion: @escaping (Result<(HTTPURLResponse?, UploadAPIResponse?), Error>) -> Void) {
             if checkUploadPolicy(policy, completion) {
                 DispatchQueue.global(qos: .default).async {
-                    let image = preprocessor != nil ? preprocessor!.outputFile(input: file, fileName: fileName) : UIImagePNGRepresentation(file)!
+                    let image = preprocessor != nil ? preprocessor!.outputFile(input: file, fileName: fileName) : file.pngData()!
                     UploadAPI.upload(
                         file: image,
                         token: token,

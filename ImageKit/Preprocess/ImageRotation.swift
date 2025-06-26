@@ -5,7 +5,7 @@
 //  Created by Animesh Verma on 03/10/23.
 //
 
-import Foundation
+import UIKit
 
 internal class ImageRotation : Preprocess {
     typealias T = UIImage
